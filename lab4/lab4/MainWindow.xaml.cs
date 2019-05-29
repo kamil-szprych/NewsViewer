@@ -97,7 +97,14 @@ namespace lab4
                     {
                         article.Category = category;
                         article.Country = Properties.Settings.Default.NewsSourceCountryCode;
-                        article.LocalPathToImage = DownloadImage(article.UrlToImage);
+                        try
+                        {
+                            article.LocalPathToImage = DownloadImage(article.UrlToImage);
+                        }
+                        catch (Exception ex)
+                        {
+                            article.LocalPathToImage = null;
+                        }
 
                         newArticlesList.Add(article);
                     }
